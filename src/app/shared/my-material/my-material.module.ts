@@ -11,7 +11,7 @@ import {
 const MAT_MODULES = [
     MatButtonModule, MatFormFieldModule,
     MatIconModule, MatInputModule,
-    MatSelectModule, MatOptionModule
+    MatSelectModule, MatOptionModule,
 ];
 
 @NgModule({

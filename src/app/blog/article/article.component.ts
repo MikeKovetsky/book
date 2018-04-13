@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { ArticleInterface } from "./article.interface";
+import { ARTICLE } from "./article.mock";
 
 @Component({
-  selector: 'book-article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+    selector: 'book-article',
+    templateUrl: './article.component.html',
+    styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
+    article: ArticleInterface;
 
-  constructor(private route: ActivatedRoute) { }
+    constructor(private route: ActivatedRoute) {
+    }
 
-  ngOnInit() {
-      this.route.queryParams.subscribe(p => console.log(p));
-  }
+    ngOnInit() {
+        this.article = ARTICLE;
+        this.route.queryParams.subscribe(p => console.log(p));
+    }
 
 }

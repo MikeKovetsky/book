@@ -1,0 +1,57 @@
+@import "../../../assets/styles/colors";
+
+.article {
+  display: flex;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left {
+    width: 50%;
+    background: $pink;
+    padding: 16px;
+    color: white;
+    padding-bottom: 60px;
+  }
+
+  &__right {
+    padding: 16px;
+    width: 50%;
+  }
+
+  &__header-controls {
+    display: flex;
+    align-items: center;
+  }
+
+  &__date {
+    margin-bottom: 60px;
+  }
+
+  &__description {
+    margin: auto;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  &__tags {
+    display: flex;
+    padding: 16px 0;
+  }
+
+  &__tag {
+    padding: 5px 14px;
+    background-color: #3131a0;
+    color: white;
+    border-radius: 40px;
+    margin-right: 10px;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+
+  &__content {
+    padding: 20px 60px;
+  }
+}

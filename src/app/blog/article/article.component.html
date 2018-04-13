@@ -1,4 +1,36 @@
-<mat-icon>home</mat-icon>
-<mat-select>
-    <mat-option>asd</mat-option>
-</mat-select>
+<div class="container">
+    <div class="article">
+        <section class="article__left">
+            <header class="article__header">
+                <mat-icon class="icon--round">keyboard_backspace</mat-icon>
+                <div class="article__header-controls">
+                    <mat-icon class="icon--square">edit</mat-icon>
+                    <img class="avatar avatar--small" src="assets/images/lannister.jpg">
+                </div>
+            </header>
+            <div class="article__content">
+                <h1 class="article__title">{{article.title}}</h1>
+                <div class="article__tags">
+                    <div class="article__tag">Tag1</div>
+                    <div class="article__tag">Tag2</div>
+                </div>
+                <div class="article__author"> by Jaime Lannister</div>
+                <div class="article__date">{{article.date | date}}</div>
+                <p class="article__description">
+                    {{article.description}}
+                </p>
+                <button class="button">Full Texts</button>
+            </div>
+        </section>
+        <section class="article__right">
+            <header class="article__header">
+                <div></div>
+                <mat-icon class="icon--round">share</mat-icon>
+            </header>
+            <div class="article__content">
+                asdasdasd
+            </div>
+        </section>
+
+    </div>
+</div>
