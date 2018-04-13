@@ -7,11 +7,15 @@
     </div>
     <footer class="article-preview__footer" mat-card-content>
         <div class="article-preview__actions">
-            <mat-icon class="icon--round">visibility</mat-icon>
+            <a [routerLink]="['/blog', 'article', article.id]">
+                <mat-icon class="icon--round">visibility</mat-icon>
+            </a>
             <mat-icon class="icon--round">launch</mat-icon>
         </div>
         <div class="article-preview__actions">
-            <mat-icon class="icon--round">edit</mat-icon>
+            <a [routerLink]="['/blog', 'article', article.id, 'edit']">
+                <mat-icon class="icon--round">edit</mat-icon>
+            </a>
             <img class="avatar avatar--small" src="assets/images/lannister.jpg">
         </div>
     </footer>
