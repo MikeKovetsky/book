@@ -11,7 +11,6 @@ export class ArticleComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-      console.log(1);
       this.route.queryParams.subscribe(p => console.log(p));
   }
 
