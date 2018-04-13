@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {
     MatButtonModule,
+    MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -12,6 +13,7 @@ const MAT_MODULES = [
     MatButtonModule, MatFormFieldModule,
     MatIconModule, MatInputModule,
     MatSelectModule, MatOptionModule,
+    MatCardModule
 ];
 
 @NgModule({

@@ -1,0 +1,13 @@
+.article-preview {
+  width: 320px;
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+}

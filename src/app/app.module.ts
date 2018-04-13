@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 import { BlogModule } from "./blog/blog.module";
 import { ArticleComponent } from "./blog/article/article.component";
+import { ArticlesComponent } from "./blog/articles/articles.component";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ArticleComponent } from "./blog/article/article.component";
       RouterModule.forRoot([
         {path: '', redirectTo: 'blog', pathMatch: 'prefix'},
           {path: 'blog', children: [
-              {path: 'article/:articleId', component: ArticleComponent}
+              {path: 'article/:articleId', component: ArticleComponent},
+              {path: 'articles', component: ArticlesComponent}
           ]},
       ]),
       BlogModule

@@ -1,3 +1,18 @@
-<p>
-  article-preview works!
-</p>
+<mat-card class="article-preview">
+    <img mat-card-image src="/assets/images/preview.jpg">
+    <h4 mat-card-content>{{article.title}}</h4>
+    <div mat-card-subtitle>
+        <p>by Jamie Lannister</p>
+        <p>{{article.date | date}}</p>
+    </div>
+    <footer class="article-preview__footer" mat-card-content>
+        <div class="article-preview__actions">
+            <mat-icon class="icon--round">visibility</mat-icon>
+            <mat-icon class="icon--round">launch</mat-icon>
+        </div>
+        <div class="article-preview__actions">
+            <mat-icon class="icon--round">edit</mat-icon>
+            <img class="avatar avatar--small" src="assets/images/lannister.jpg">
+        </div>
+    </footer>
+</mat-card>
