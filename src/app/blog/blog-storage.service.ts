@@ -16,7 +16,7 @@ export class BlogStorageService {
     addArticle(article: ArticleInterface) {
         article.id = this.getNextId();
         const key = this.collectionPrefix + article.id;
-        this.localStorageService.setOne(key, article.toString());
+        this.localStorageService.setOne(key, JSON.stringify(article));
     }
 
     getArticles(): ArticleInterface[] {
@@ -29,6 +29,9 @@ export class BlogStorageService {
 
     private getNextId(): number {
         const ids = this.getAllArticlesId();
+        if (!ids.length) {
+            return 0;
+        }
         const maxId = getMaxOfArray(ids);
         return maxId + 1;
     }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 const DEFAULT_COLORS = [
     '#00b51c',
@@ -18,16 +18,19 @@ const DEFAULT_COLORS = [
 })
 export class ColorPickerComponent implements OnInit {
     @Input() colors = DEFAULT_COLORS;
-    pickedColor = this.colors[0];
+    @Output() picked = new EventEmitter<string>();
+    pickedColor: string;
 
     constructor() {
     }
 
     ngOnInit() {
+        this.pickColor(this.colors[0]);
     }
 
     pickColor(color: string) {
         this.pickedColor = color;
+        this.picked.emit(color);
     }
 
 }

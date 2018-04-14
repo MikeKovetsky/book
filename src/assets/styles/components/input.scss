@@ -37,6 +37,7 @@
     width: 100%;
     outline: none;
     color: white;
+    border-radius: 2px;
     &::-webkit-input-placeholder {
       color: white;
       font-weight: 300;
@@ -58,6 +59,10 @@
       color: white;
       font-weight: 300;
       font-size: 0.8rem;
+    }
+
+    &.ng-invalid.ng-dirty {
+      border: 1px solid #ff3535;
     }
   }
 

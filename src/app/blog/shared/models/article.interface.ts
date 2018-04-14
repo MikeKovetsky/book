@@ -1,7 +1,14 @@
 export interface ArticleInterface {
-    id: number;
+    id?: number;
     title: string;
+    tags: string;
+    month: string;
+    year: string;
+    school: string;
+    course: string;
+    url: string;
+    abstract: string;
+    color: string
     description: string;
-    date: Date;
-    authorId: string;
+    authorId?: number;
 }

@@ -9,12 +9,14 @@ import { TruncatePipe } from "../shared/pipes/truncate.pipe";
 import { BlogStorageService } from "./blog-storage.service";
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { ColorPickerComponent } from "../shared/components/color-picker/color-picker.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
     imports: [
         CommonModule,
         MyMaterialModule,
-        RouterModule
+        RouterModule,
+        ReactiveFormsModule
     ],
     declarations: [ArticleComponent, ArticlePreviewComponent, ArticlesComponent, TruncatePipe, EditArticleComponent, ColorPickerComponent],
     providers: [BlogStorageService]
