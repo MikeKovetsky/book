@@ -12,4 +12,14 @@
     align-items: center;
     margin-bottom: 10px;
   }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  &__total {
+    margin-left: 10px;
+  }
 }
