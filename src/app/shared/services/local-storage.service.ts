@@ -21,7 +21,9 @@ export class LocalStorageService {
     getAllStoragaKeys(): string[] {
         const keys = [];
         for (const key in localStorage) {
-            keys.push(key);
+            if (localStorage.hasOwnProperty(key)) {
+                keys.push(key);
+            }
         }
         return keys;
     }

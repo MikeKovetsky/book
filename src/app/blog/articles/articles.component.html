@@ -1,7 +1,9 @@
 <div class="articles container" *ngIf="articles.length; else noArticles">
     <div class="articles__header">
         <h3 class="articles__title">Academic Media</h3>
-        <mat-icon class="icon--square">add</mat-icon>
+        <a [routerLink]="['/blog', 'edit-article']">
+            <mat-icon class="icon--square">add</mat-icon>
+        </a>
     </div>
     <book-article-preview [article]="currentArticle"></book-article-preview>
     <footer class="articles__footer">

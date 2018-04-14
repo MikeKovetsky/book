@@ -40,6 +40,6 @@ export class BlogStorageService {
         const keys = this.localStorageService.getAllStoragaKeys();
         const articleKeys = keys.filter(k => k.includes(this.collectionPrefix));
         const ids = articleKeys.map(k => k.replace(this.collectionPrefix, ''));
-        return ids.map(parseInt).sort();
+        return ids.map(id => parseInt(id)).sort();
     }
 }
