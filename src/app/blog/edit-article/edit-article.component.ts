@@ -8,6 +8,7 @@ import { ArticleInterface } from "../shared/models/article.interface";
 })
 export class EditArticleComponent implements OnInit {
     article: ArticleInterface;
+    readonly abstractMaxLength = 1000;
 
     constructor() {
     }

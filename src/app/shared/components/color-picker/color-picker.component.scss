@@ -1,0 +1,21 @@
+.color-picker {
+  height: 40px;
+  display: flex;
+
+  &__color {
+    height: 100%;
+    width: 100%;
+    border: 1px solid #9e9e9e;
+    cursor: pointer;
+    position: relative;
+
+    &--picked:after {
+      content: '✔';
+      color: white;
+      position: absolute;
+      left: 50%;
+      margin-left: -6px;
+      margin-top: 6px;
+    }
+  }
+}

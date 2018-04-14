@@ -9,10 +9,9 @@ import { ArticlesComponent } from "./blog/articles/articles.component";
 import { LocalStorageService } from "./shared/services/local-storage.service";
 import { EditArticleComponent } from "./blog/edit-article/edit-article.component";
 
-
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,
