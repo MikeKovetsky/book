@@ -72,6 +72,11 @@ p {
 }
 
 .icon {
+  &--disabled {
+    opacity: .3;
+    pointer-events: none;
+  }
+
   &--round {
     @extend .icon;
     border-radius: 50%;

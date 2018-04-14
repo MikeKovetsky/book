@@ -2,7 +2,9 @@
     <div class="article">
         <section class="article__left">
             <header class="article__header">
-                <mat-icon class="icon--round">keyboard_backspace</mat-icon>
+                <a [routerLink]="['/blog', 'articles']">
+                    <mat-icon class="icon--round" >keyboard_backspace</mat-icon>
+                </a>
                 <h1 class="article__header-title">Edit Media Details</h1>
                 <div class="article__header-controls">
                     <mat-icon class="icon--square">edit</mat-icon>

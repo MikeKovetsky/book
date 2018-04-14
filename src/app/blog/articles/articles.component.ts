@@ -10,13 +10,31 @@ import { BlogStorageService } from "../blog-storage.service";
 export class ArticlesComponent implements OnInit {
     articles: ArticleInterface[];
     currentArticle: ArticleInterface;
+    hasPrev = false;
+    hasNext = false;
 
     constructor(private blogStorage: BlogStorageService) {
     }
 
     ngOnInit() {
         this.articles = this.blogStorage.getArticles();
-        this.currentArticle = this.articles[0];
+        this.loadArticle(0);
+    }
+
+    getPrevArticle() {
+        const currentIndex = this.articles.indexOf(this.currentArticle);
+        this.loadArticle(currentIndex - 1);
+    }
+
+    getNextArticle() {
+        const currentIndex = this.articles.indexOf(this.currentArticle);
+        this.loadArticle(currentIndex + 1);
+    }
+
+    private loadArticle(index: number) {
+        this.currentArticle = this.articles[index];
+        this.hasPrev = index - 1 >= 0;
+        this.hasNext = index + 1 < this.articles.length;
     }
 
 }
