@@ -7,6 +7,7 @@ import { BlogModule } from "./blog/blog.module";
 import { ArticleComponent } from "./blog/article/article.component";
 import { ArticlesComponent } from "./blog/articles/articles.component";
 import { LocalStorageService } from "./shared/services/local-storage.service";
+import { EditArticleComponent } from "./blog/edit-article/edit-article.component";
 
 
 @NgModule({
@@ -21,9 +22,9 @@ import { LocalStorageService } from "./shared/services/local-storage.service";
             {
                 path: 'blog', children: [
                     {path: '', redirectTo: 'articles', pathMatch: 'prefix'},
-                    {path: 'article/:articleId', component: ArticleComponent},
                     {path: 'articles', component: ArticlesComponent},
-                    {path: 'new-article', component: ArticlesComponent}
+                    {path: 'article/:articleId', component: ArticleComponent},
+                    {path: 'edit-article', component: EditArticleComponent}
                 ]
             },
         ]),

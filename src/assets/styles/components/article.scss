@@ -1,4 +1,4 @@
-@import "../../../assets/styles/colors";
+@import "../colors";
 
 .article {
   display: flex;
@@ -6,6 +6,7 @@
   &__header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   &__left {
@@ -57,5 +58,12 @@
 
   &__content {
     padding: 20px 60px;
+  }
+
+  &__edit-form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 }

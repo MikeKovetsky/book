@@ -7,6 +7,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { RouterModule } from "@angular/router";
 import { TruncatePipe } from "../shared/pipes/truncate.pipe";
 import { BlogStorageService } from "./blog-storage.service";
+import { EditArticleComponent } from './edit-article/edit-article.component';
 
 @NgModule({
     imports: [
@@ -14,7 +15,7 @@ import { BlogStorageService } from "./blog-storage.service";
         MyMaterialModule,
         RouterModule
     ],
-    declarations: [ArticleComponent, ArticlePreviewComponent, ArticlesComponent, TruncatePipe],
+    declarations: [ArticleComponent, ArticlePreviewComponent, ArticlesComponent, TruncatePipe, EditArticleComponent],
     providers: [BlogStorageService]
 })
 export class BlogModule {

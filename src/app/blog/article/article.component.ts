@@ -5,8 +5,7 @@ import { ArticleInterface } from "../shared/models/article.interface";
 
 @Component({
     selector: 'book-article',
-    templateUrl: './article.component.html',
-    styleUrls: ['./article.component.scss']
+    templateUrl: './article.component.html'
 })
 export class ArticleComponent implements OnInit {
     article: ArticleInterface;
