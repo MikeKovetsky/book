@@ -35,9 +35,10 @@ p {
 
 .button {
   border: 1px solid black;
-  font-size: 16px;
+  font-size: 13px;
   padding: 6px 18px;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .container {
@@ -45,6 +46,7 @@ p {
   padding: 0 24px;
   margin: 0 auto;
   width: 100%;
+  align-content: space-between;
 }
 
 .icon {

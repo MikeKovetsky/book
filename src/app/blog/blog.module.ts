@@ -5,6 +5,7 @@ import { ArticlePreviewComponent } from './article-preview/article-preview.compo
 import { MyMaterialModule } from "../shared/my-material/my-material.module";
 import { ArticlesComponent } from './articles/articles.component';
 import { RouterModule } from "@angular/router";
+import { TruncatePipe } from "../shared/pipes/truncate.pipe";
 
 @NgModule({
     imports: [
@@ -12,7 +13,7 @@ import { RouterModule } from "@angular/router";
         MyMaterialModule,
         RouterModule
     ],
-    declarations: [ArticleComponent, ArticlePreviewComponent, ArticlesComponent]
+    declarations: [ArticleComponent, ArticlePreviewComponent, ArticlesComponent, TruncatePipe]
 })
 export class BlogModule {
 }

@@ -26,6 +26,10 @@
     align-items: center;
   }
 
+  &__author {
+    margin-bottom: 6px;
+  }
+
   &__date {
     margin-bottom: 60px;
   }
@@ -38,7 +42,7 @@
 
   &__tags {
     display: flex;
-    padding: 16px 0;
+    padding: 26px 0;
   }
 
   &__tag {
@@ -47,7 +51,7 @@
     color: white;
     border-radius: 40px;
     margin-right: 10px;
-    font-size: 14px;
+    font-size: 12px;
     text-transform: capitalize;
   }
 

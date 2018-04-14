@@ -15,11 +15,13 @@
                     <div class="article__tag">Tag2</div>
                 </div>
                 <div class="article__author"> by Jaime Lannister</div>
-                <div class="article__date">{{article.date | date}}</div>
+                <div class="article__date">{{article.date | date: 'MMMM yyyy'}}</div>
                 <p class="article__description">
-                    {{article.description}}
+                    {{article.description | truncate: 700: descriptionExpanded}}
                 </p>
-                <button class="button">Full Texts</button>
+                <button class="button" (click)="expandDescription()" *ngIf="!descriptionExpanded">
+                    Full Texts
+                </button>
             </div>
         </section>
         <section class="article__right">
