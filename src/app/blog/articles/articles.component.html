@@ -1,16 +1,23 @@
-<div class="articles container">
+<div class="articles container" *ngIf="articles.length; else noArticles">
     <div class="articles__header">
         <h3 class="articles__title">Academic Media</h3>
         <mat-icon class="icon--square">add</mat-icon>
     </div>
-    <book-article-preview [article]="article"></book-article-preview>
+    <book-article-preview [article]="currentArticle"></book-article-preview>
     <footer class="articles__footer">
         <div class="articles__nav">
             <mat-icon class="icon--round">keyboard_arrow_left</mat-icon>
             <mat-icon class="icon--round">keyboard_arrow_right</mat-icon>
         </div>
         <div class="articles__total">
-            <b>5</b> items total
+            <b>{{articles.length}}</b> items total
         </div>
     </footer>
 </div>
+
+<ng-template #noArticles>
+    <div class="container">
+        No articles for now.
+        <a [routerLink]="['blog', 'new-article']">Create one.</a>
+    </div>
+</ng-template>

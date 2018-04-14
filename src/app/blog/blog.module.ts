@@ -6,6 +6,7 @@ import { MyMaterialModule } from "../shared/my-material/my-material.module";
 import { ArticlesComponent } from './articles/articles.component';
 import { RouterModule } from "@angular/router";
 import { TruncatePipe } from "../shared/pipes/truncate.pipe";
+import { BlogStorageService } from "./blog-storage.service";
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { TruncatePipe } from "../shared/pipes/truncate.pipe";
         MyMaterialModule,
         RouterModule
     ],
-    declarations: [ArticleComponent, ArticlePreviewComponent, ArticlesComponent, TruncatePipe]
+    declarations: [ArticleComponent, ArticlePreviewComponent, ArticlesComponent, TruncatePipe],
+    providers: [BlogStorageService]
 })
 export class BlogModule {
 }

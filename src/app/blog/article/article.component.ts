@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { ArticleInterface } from "./article.interface";
-import { ARTICLE } from "./article.mock";
+import { ARTICLE } from "../shared/article.mock";
+import { ArticleInterface } from "../shared/models/article.interface";
 
 @Component({
     selector: 'book-article',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ArticleInterface } from "../article/article.interface";
+import { ArticleInterface } from "../shared/models/article.interface";
 
 @Component({
   selector: 'book-article-preview',

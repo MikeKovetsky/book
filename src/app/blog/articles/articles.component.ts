@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleInterface } from "../article/article.interface";
-import { ARTICLE } from "../article/article.mock";
+import { ArticleInterface } from "../shared/models/article.interface";
+import { BlogStorageService } from "../blog-storage.service";
 
 @Component({
-  selector: 'book-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss']
+    selector: 'book-articles',
+    templateUrl: './articles.component.html',
+    styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-    article: ArticleInterface;
+    articles: ArticleInterface[];
+    currentArticle: ArticleInterface;
 
-  constructor() { }
+    constructor(private blogStorage: BlogStorageService) {
+    }
 
-  ngOnInit() {
-      this.article = ARTICLE;
-  }
+    ngOnInit() {
+        this.articles = this.blogStorage.getArticles();
+        this.currentArticle = this.articles[0];
+    }
 
 }
