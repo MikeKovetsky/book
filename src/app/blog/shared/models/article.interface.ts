@@ -10,5 +10,5 @@ export interface ArticleInterface {
     abstract: string;
     color: string
     description: string;
-    authorId?: number;
+    author: string;
 }

@@ -29,6 +29,7 @@ export class EditArticleComponent implements OnInit {
             school: [''],
             course: [''],
             url: [''],
+            author: [''],
             description: [''],
             abstract: [''],
             color: ['']

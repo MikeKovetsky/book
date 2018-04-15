@@ -25,6 +25,12 @@
                                       (picked)="form.get('tags').setValue($event)">
                     </book-tags-picker>
                 </div>
+                <div class="form-field form-field--full">
+                    <div class="form-field__label">Author</div>
+                    <input type="text" class="form-field__input"
+                           formControlName="author"
+                           placeholder="This is author name">
+                </div>
                 <div class="form-field form-field--with-arrow form-field--half">
                     <div class="form-field__label">Month</div>
                     <select class="form-field__select" formControlName="month">

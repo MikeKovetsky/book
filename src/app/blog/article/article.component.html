@@ -27,7 +27,7 @@
                 <div class="article__tags" *ngIf="tags.length">
                     <div class="article__tag" *ngFor="let tag of tags">{{tag}}</div>
                 </div>
-                <div class="article__author"> by Jaime Lannister</div>
+                <div class="article__author"> by {{article.author}}</div>
                 <div class="article__date">{{article.month}} {{article.year}}</div>
                 <p class="article__description">
                     {{article.abstract | truncate: maxArticleDescriptionLength: descriptionExpanded}}
