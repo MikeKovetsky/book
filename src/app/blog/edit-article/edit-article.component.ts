@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleInterface } from "../shared/models/article.interface";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { BlogStorageService } from "../blog-storage.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { filter, map } from "rxjs/operators";
@@ -31,7 +31,7 @@ export class EditArticleComponent implements OnInit {
             url: [''],
             author: [''],
             description: [''],
-            abstract: [''],
+            abstract: ['', Validators.maxLength(this.abstractMaxLength)],
             color: ['']
         });
     }
@@ -52,8 +52,9 @@ export class EditArticleComponent implements OnInit {
     }
 
     saveArticle() {
+        this.markFormGroupTouched(this.form);
         if (this.form.invalid) {
-            alert('Some required fields are empty!');
+            alert('Some of the fields are invalid!');
             return;
         }
         if (this.articleId) {
@@ -69,6 +70,22 @@ export class EditArticleComponent implements OnInit {
     setColor(color: string) {
         this.backgroundColor = color;
         this.form.get('color').setValue(color);
+    }
+
+    // https://github.com/angular/angular/issues/11774
+    private markFormGroupTouched(formGroup: FormGroup) {
+        if (formGroup.controls) {
+            Object.keys(formGroup.controls).forEach((key) => {
+                const control = formGroup.controls[key];
+
+                if (control instanceof FormControl) {
+                    control.markAsTouched();
+                    control.updateValueAndValidity();
+                } else if (control instanceof FormGroup) {
+                    this.markFormGroupTouched(control);
+                }
+            });
+        }
     }
 
     private updateForm(article: ArticleInterface) {
