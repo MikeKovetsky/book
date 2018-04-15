@@ -8,7 +8,9 @@
                 <h1 class="article__header-title">Edit Media Details</h1>
                 <div class="article__header-controls">
                     <mat-icon class="icon--square">drafts</mat-icon>
-                    <img class="avatar avatar--small" src="assets/images/lannister.jpg">
+                    <a [routerLink]="['/blog', 'articles']" [queryParams]="{articleId: articleId}">
+                        <mat-icon class="icon--square">file_upload</mat-icon>
+                    </a>
                 </div>
             </header>
             <form class="article__edit-form" [formGroup]="form">

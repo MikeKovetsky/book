@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleInterface } from "../shared/models/article.interface";
 import { BlogStorageService } from "../blog-storage.service";
+import { ActivatedRoute } from "@angular/router";
+import { filter, map } from "rxjs/operators";
 
 @Component({
     selector: 'book-articles',
@@ -13,11 +15,16 @@ export class ArticlesComponent implements OnInit {
     hasPrev = false;
     hasNext = false;
 
-    constructor(private blogStorage: BlogStorageService) {
+    constructor(private route: ActivatedRoute,
+                private blogStorage: BlogStorageService) {
     }
 
     ngOnInit() {
         this.fetchArticles();
+        this.route.queryParams.pipe(
+            filter(p => p['articleId']),
+            map(p => parseInt(p['articleId']))
+        ).subscribe(id => this.loadArticle(id));
     }
 
     fetchArticles() {
