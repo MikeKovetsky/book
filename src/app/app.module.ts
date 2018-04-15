@@ -8,6 +8,7 @@ import { ArticleComponent } from "./blog/article/article.component";
 import { ArticlesComponent } from "./blog/articles/articles.component";
 import { LocalStorageService } from "./shared/services/local-storage.service";
 import { EditArticleComponent } from "./blog/edit-article/edit-article.component";
+import { FrontendStorageService } from "./shared/services/frontend-storage.service";
 
 @NgModule({
     declarations: [
@@ -29,7 +30,7 @@ import { EditArticleComponent } from "./blog/edit-article/edit-article.component
         ]),
         BlogModule
     ],
-    providers: [LocalStorageService],
+    providers: [FrontendStorageService, LocalStorageService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

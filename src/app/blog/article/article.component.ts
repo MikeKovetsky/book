@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { ArticleInterface } from "../shared/models/article.interface";
-import { BlogStorageService } from "../blog-storage.service";
+import { Article } from "../shared/models/article.interface";
+import { BlogService } from "../shared/services/blog.service";
 import { filter, map, tap } from "rxjs/operators";
 
 @Component({
@@ -9,14 +9,14 @@ import { filter, map, tap } from "rxjs/operators";
     templateUrl: './article.component.html'
 })
 export class ArticleComponent implements OnInit {
-    article: ArticleInterface;
+    article: Article;
     descriptionExpanded = false;
     tags: string[] = [];
     readonly maxArticleDescriptionLength = 700;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private blogStorage: BlogStorageService) {
+                private blogStorage: BlogService) {
     }
 
     ngOnInit() {

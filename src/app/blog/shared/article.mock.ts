@@ -1,6 +1,6 @@
-import { ArticleInterface } from "./models/article.interface";
+import { Article } from "./models/article.interface";
 
-export const ARTICLE: ArticleInterface = {
+export const ARTICLE: Article = {
     id: 1,
     title: 'Sed ut perspiciatis unde omnis iste natus error veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
     tags: 'school, game of thrones',
@@ -11,5 +11,6 @@ export const ARTICLE: ArticleInterface = {
     course: '1',
     url: 'sadfsad',
     abstract: 'sdfs',
+    author: 'Jaime Lannister',
     color: '#eeeddd',
 };

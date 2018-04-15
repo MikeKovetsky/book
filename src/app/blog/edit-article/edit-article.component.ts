@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleInterface } from "../shared/models/article.interface";
+import { Article } from "../shared/models/article.interface";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { BlogStorageService } from "../blog-storage.service";
+import { BlogService } from "../shared/services/blog.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { filter, map } from "rxjs/operators";
+import { debounce, debounceTime, distinctUntilChanged, filter, map, take } from "rxjs/operators";
+import { DraftService } from "../shared/services/draft.service";
 
 @Component({
     selector: 'book-edit-article',
@@ -12,7 +13,7 @@ import { filter, map } from "rxjs/operators";
 })
 export class EditArticleComponent implements OnInit {
     readonly abstractMaxLength = 1000;
-    article: ArticleInterface;
+    article: Article;
     form: FormGroup;
     articleId: number;
     backgroundColor: string;
@@ -20,7 +21,8 @@ export class EditArticleComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private fb: FormBuilder,
-                private blogStorage: BlogStorageService) {
+                private draftService: DraftService,
+                private blogStorage: BlogService) {
         this.form = fb.group({
             title: ['', Validators.required],
             tags: [''],
@@ -49,6 +51,13 @@ export class EditArticleComponent implements OnInit {
                 this.router.navigate(['/blog', 'edit-article']);
             }
         });
+
+        this.form.valueChanges.pipe(
+            debounceTime(this.draftService.draftSaveDebounceTimeMs),
+            distinctUntilChanged()
+        ).subscribe(form => {
+
+        });
     }
 
     saveArticle() {
@@ -58,7 +67,7 @@ export class EditArticleComponent implements OnInit {
             return;
         }
         if (this.articleId) {
-            const article: ArticleInterface = Object.assign(this.form.value, {id: this.articleId});
+            const article: Article = Object.assign(this.form.value, {id: this.articleId});
             this.blogStorage.updateArticle(this.articleId, article);
             alert('Article was edited!');
         } else {
@@ -88,7 +97,7 @@ export class EditArticleComponent implements OnInit {
         }
     }
 
-    private updateForm(article: ArticleInterface) {
+    private updateForm(article: Article) {
         this.articleId = article.id;
         for (const field in article) {
             if (this.form.get(field) !== null) {

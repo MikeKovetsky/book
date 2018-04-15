@@ -6,12 +6,13 @@ import { MyMaterialModule } from "../shared/my-material/my-material.module";
 import { ArticlesComponent } from './articles/articles.component';
 import { RouterModule } from "@angular/router";
 import { TruncatePipe } from "../shared/pipes/truncate.pipe";
-import { BlogStorageService } from "./blog-storage.service";
+import { BlogService } from "./shared/services/blog.service";
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { ColorPickerComponent } from "../shared/components/color-picker/color-picker.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { TagsPickerComponent } from "../shared/components/tags-picker/tags-picker.component";
+import { DraftService } from "./shared/services/draft.service";
 
 @NgModule({
     imports: [
@@ -30,7 +31,7 @@ import { TagsPickerComponent } from "../shared/components/tags-picker/tags-picke
         ColorPickerComponent,
         TagsPickerComponent
     ],
-    providers: [BlogStorageService]
+    providers: [BlogService, DraftService]
 })
 export class BlogModule {
 }

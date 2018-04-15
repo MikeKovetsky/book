@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleInterface } from "../shared/models/article.interface";
-import { BlogStorageService } from "../blog-storage.service";
+import { Article } from "../shared/models/article.interface";
+import { BlogService } from "../shared/services/blog.service";
 import { ActivatedRoute } from "@angular/router";
 import { filter, map } from "rxjs/operators";
 
@@ -10,13 +10,13 @@ import { filter, map } from "rxjs/operators";
     styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-    articles: ArticleInterface[];
-    currentArticle: ArticleInterface;
+    articles: Article[];
+    currentArticle: Article;
     hasPrev = false;
     hasNext = false;
 
     constructor(private route: ActivatedRoute,
-                private blogStorage: BlogStorageService) {
+                private blogStorage: BlogService) {
     }
 
     ngOnInit() {

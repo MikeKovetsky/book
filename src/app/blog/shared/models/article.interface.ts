@@ -1,5 +1,5 @@
-export interface ArticleInterface {
-    id?: number;
+export interface Article {
+    id: number;
     title: string;
     tags: string;
     month: string;

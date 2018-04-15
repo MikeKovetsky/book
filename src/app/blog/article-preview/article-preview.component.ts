@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ArticleInterface } from "../shared/models/article.interface";
-import { BlogStorageService } from "../blog-storage.service";
+import { Article } from "../shared/models/article.interface";
+import { BlogService } from "../shared/services/blog.service";
 
 @Component({
     selector: 'book-article-preview',
@@ -8,10 +8,10 @@ import { BlogStorageService } from "../blog-storage.service";
     styleUrls: ['./article-preview.component.scss']
 })
 export class ArticlePreviewComponent implements OnInit {
-    @Input() article: ArticleInterface;
+    @Input() article: Article;
     @Output() deleted = new EventEmitter<void>();
 
-    constructor(private blogStorage: BlogStorageService) {
+    constructor(private blogStorage: BlogService) {
     }
 
     ngOnInit() {
