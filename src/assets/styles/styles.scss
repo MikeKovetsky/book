@@ -76,6 +76,10 @@ p {
 }
 
 .icon {
+  user-select: none;
+  &:hover {
+    background: #eee;
+  }
   &--disabled {
     opacity: .3;
     pointer-events: none;
