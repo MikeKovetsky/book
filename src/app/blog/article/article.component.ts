@@ -39,7 +39,9 @@ export class ArticleComponent implements OnInit {
 
     private loadArticle(id: number) {
         this.article = this.blogStorage.getArticle(id);
-        this.tags = this.prepareTags(this.article.tags);
+        if (this.article) {
+            this.tags = this.prepareTags(this.article.tags);
+        }
     }
 
     private prepareTags(tags: string): string[] {
