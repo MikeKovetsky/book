@@ -10,6 +10,12 @@
     width: 48%;
   }
 
+  &__inner {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
   &__label {
     color: white;
   }
@@ -75,6 +81,21 @@
   &__select {
     @extend .form-field__input;
     cursor: pointer;
+  }
+
+  &__tags {
+    @extend .form-field__input;
+    min-height: 150px;
+  }
+
+  &__tag {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__tag {
+    display: flex;
+    justify-content: space-between;
   }
 
   &__symbols {

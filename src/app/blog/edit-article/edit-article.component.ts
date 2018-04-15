@@ -16,7 +16,6 @@ export class EditArticleComponent implements OnInit {
     form: FormGroup;
     articleId: number;
     backgroundColor: string;
-    text = 'asdas';
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -43,6 +42,7 @@ export class EditArticleComponent implements OnInit {
             map(id => this.blogStorage.getArticle(id)),
         ).subscribe(article => {
             if (article) {
+                this.article = article;
                 this.updateForm(article)
             } else {
                 this.router.navigate(['/blog', 'edit-article']);

@@ -48,6 +48,10 @@ p {
   padding: 6px 18px;
   cursor: pointer;
   text-transform: uppercase;
+
+  &[disabled] {
+    opacity: .4;
+  }
 }
 
 .container {
@@ -85,6 +89,10 @@ p {
   &--square {
     @extend .icon;
     border-radius: 2px;
+  }
+
+  &--sm {
+    font-size: 12px;
   }
 
   &__wrapper {

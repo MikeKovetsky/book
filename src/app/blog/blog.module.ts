@@ -11,6 +11,7 @@ import { EditArticleComponent } from './edit-article/edit-article.component';
 import { ColorPickerComponent } from "../shared/components/color-picker/color-picker.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { EditorModule } from "@tinymce/tinymce-angular";
+import { TagsPickerComponent } from "../shared/components/tags-picker/tags-picker.component";
 
 @NgModule({
     imports: [
@@ -20,7 +21,15 @@ import { EditorModule } from "@tinymce/tinymce-angular";
         ReactiveFormsModule,
         EditorModule
     ],
-    declarations: [ArticleComponent, ArticlePreviewComponent, ArticlesComponent, TruncatePipe, EditArticleComponent, ColorPickerComponent],
+    declarations: [
+        ArticleComponent,
+        ArticlePreviewComponent,
+        ArticlesComponent,
+        TruncatePipe,
+        EditArticleComponent,
+        ColorPickerComponent,
+        TagsPickerComponent
+    ],
     providers: [BlogStorageService]
 })
 export class BlogModule {

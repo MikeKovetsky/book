@@ -7,7 +7,7 @@
                 </a>
                 <h1 class="article__header-title">Edit Media Details</h1>
                 <div class="article__header-controls">
-                    <mat-icon class="icon--square">edit</mat-icon>
+                    <mat-icon class="icon--square">drafts</mat-icon>
                     <img class="avatar avatar--small" src="assets/images/lannister.jpg">
                 </div>
             </header>
@@ -19,10 +19,9 @@
                            placeholder="This is title">
                 </div>
                 <div class="form-field form-field--full">
-                    <div class="form-field__label">Tags</div>
-                    <input type="text" class="form-field__input"
-                           formControlName="tags"
-                           placeholder="Type to add">
+                    <book-tags-picker [initialTags]="article?.tags"
+                                      (picked)="form.get('tags').setValue($event)">
+                    </book-tags-picker>
                 </div>
                 <div class="form-field form-field--with-arrow form-field--half">
                     <div class="form-field__label">Month</div>

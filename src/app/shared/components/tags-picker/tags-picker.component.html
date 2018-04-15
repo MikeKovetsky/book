@@ -1,0 +1,26 @@
+<div class="form-field form-field--full">
+    <div class="form-field__label">Tags</div>
+    <div class="form-field__inner">
+        <div class="form-field form-field--half">
+            <input type="text" class="form-field__input"
+                   [formControl]="newTagControl"
+                   placeholder="Type to add">
+            <button class="button"
+                    [disabled]="!newTagControl.value || tags.length === MAX_TAGS_LENGTH"
+                    (click)="add(newTagControl.value)">
+                Add tag
+            </button>
+        </div>
+        <div class="form-field form-field--half">
+            <div class="form-field__tags">
+                <div class="form-field__tag" *ngFor="let tag of tags">
+                    <span>{{tag}}</span>
+                    <mat-icon class="icon--square icon--sm" (click)="remove(tag)">delete</mat-icon>
+                </div>
+                <div class="form-field__symbols">
+                    {{tags.length}} / {{MAX_TAGS_LENGTH}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
