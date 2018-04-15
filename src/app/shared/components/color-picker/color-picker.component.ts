@@ -27,7 +27,7 @@ export class ColorPickerComponent implements OnInit {
     }
 
     ngOnInit() {
-        const initialColor = this.initialColor ? this.initialColor : this.colors[0];
+        const initialColor = this.initialColor || this.colors[0];
         this.pickColor(initialColor);
     }
 

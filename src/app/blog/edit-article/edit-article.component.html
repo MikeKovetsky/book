@@ -71,7 +71,7 @@
                 </div>
                 <div class="form-field form-field--full">
                     <div class="form-field__label">Choose a cover color</div>
-                    <book-color-picker [initialColor]="form.get('color').value"
+                    <book-color-picker [initialColor]="article?.color"
                                        (picked)="setColor($event)">
                     </book-color-picker>
                 </div>
