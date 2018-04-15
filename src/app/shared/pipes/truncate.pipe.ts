@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TruncatePipe implements PipeTransform {
 
     transform(value: string, limit: number, disabled = false): string {
-        if (disabled) {
+        if (disabled || !value) {
             return value;
         }
         const ellipsis = '...';

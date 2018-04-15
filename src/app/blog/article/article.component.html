@@ -1,27 +1,30 @@
 <div class="container">
-    <div class="article">
+    <div class="article" *ngIf="article; else articleNotFound">
         <section class="article__left">
             <header class="article__header">
                 <a [routerLink]="['/blog', 'edit-article']">
                     <mat-icon class="icon--square">add</mat-icon>
                 </a>
                 <div class="article__header-controls">
-                    <mat-icon class="icon--square">edit</mat-icon>
+                    <a [routerLink]="['/blog', 'edit-article']" [queryParams]="{articleId: article.id}">
+                        <mat-icon class="icon--square">edit</mat-icon>
+                    </a>
                     <img class="avatar avatar--small" src="assets/images/lannister.jpg">
                 </div>
             </header>
             <div class="article__content">
                 <h1 class="article__title">{{article.title}}</h1>
-                <div class="article__tags">
-                    <div class="article__tag">Tag1</div>
-                    <div class="article__tag">Tag2</div>
+                <div class="article__tags" *ngIf="tags.length">
+                    <div class="article__tag" *ngFor="let tag of tags">{{tag}}</div>
                 </div>
                 <div class="article__author"> by Jaime Lannister</div>
                 <div class="article__date">{{article.month}} {{article.year}}</div>
                 <p class="article__description">
-                    {{article.description | truncate: 700: descriptionExpanded}}
+                    {{article.description | truncate: maxArtcileDescriptionLength: descriptionExpanded}}
                 </p>
-                <button class="button" (click)="expandDescription()" *ngIf="!descriptionExpanded">
+                <button class="button"
+                        (click)="expandDescription()"
+                        *ngIf="!descriptionExpanded && article?.description?.length > maxArtcileDescriptionLength">
                     Full Texts
                 </button>
             </div>
@@ -37,4 +40,9 @@
         </section>
 
     </div>
+
+    <ng-template #articleNotFound>
+        Article Not Found
+        <a [routerLink]="'/'">Link home</a>
+    </ng-template>
 </div>

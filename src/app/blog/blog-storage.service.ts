@@ -27,6 +27,11 @@ export class BlogStorageService {
             .map(a => JSON.parse(a));
     }
 
+    getArticle(id: number): ArticleInterface {
+        const articles = this.getArticles();
+        return articles.find(a => a.id === id);
+    }
+
     private getNextId(): number {
         const ids = this.getAllArticlesId();
         if (!ids.length) {
