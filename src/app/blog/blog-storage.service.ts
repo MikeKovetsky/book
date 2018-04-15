@@ -19,6 +19,11 @@ export class BlogStorageService {
         this.localStorageService.setOne(key, JSON.stringify(article));
     }
 
+    updateArticle(articleId: number, article: ArticleInterface) {
+        const key = this.collectionPrefix + articleId;
+        this.localStorageService.setOne(key, JSON.stringify(article));
+    }
+
     getArticles(): ArticleInterface[] {
         const keys = this.localStorageService.getAllStoragaKeys();
         return keys
