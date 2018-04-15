@@ -15,6 +15,7 @@ export class EditArticleComponent implements OnInit {
     article: ArticleInterface;
     form: FormGroup;
     articleId: number;
+    backgroundColor: string;
 
     constructor(private route: ActivatedRoute,
                 private fb: FormBuilder,
@@ -57,6 +58,7 @@ export class EditArticleComponent implements OnInit {
     }
 
     setColor(color: string) {
+        this.backgroundColor = color;
         this.form.get('color').setValue(color);
     }
 

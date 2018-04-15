@@ -1,6 +1,6 @@
 <div class="container">
     <div class="article">
-        <section class="article__left">
+        <section class="article__left" [style.background-color]="backgroundColor">
             <header class="article__header">
                 <a [routerLink]="['/blog', 'articles']">
                     <mat-icon class="icon--round" >keyboard_backspace</mat-icon>
@@ -71,7 +71,9 @@
                 </div>
                 <div class="form-field form-field--full">
                     <div class="form-field__label">Choose a cover color</div>
-                    <book-color-picker (picked)="setColor($event)"></book-color-picker>
+                    <book-color-picker [initialColor]="form.get('color').value"
+                                       (picked)="setColor($event)">
+                    </book-color-picker>
                 </div>
                 <button class="button" (click)="saveArticle()">Save</button>
             </form>

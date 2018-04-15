@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from "@angular/forms";
 
 const DEFAULT_COLORS = [
     '#00b51c',
@@ -18,6 +19,7 @@ const DEFAULT_COLORS = [
 })
 export class ColorPickerComponent implements OnInit {
     @Input() colors = DEFAULT_COLORS;
+    @Input() initialColor: string;
     @Output() picked = new EventEmitter<string>();
     pickedColor: string;
 
@@ -25,7 +27,8 @@ export class ColorPickerComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.pickColor(this.colors[0]);
+        const initialColor = this.initialColor ? this.initialColor : this.colors[0];
+        this.pickColor(initialColor);
     }
 
     pickColor(color: string) {
