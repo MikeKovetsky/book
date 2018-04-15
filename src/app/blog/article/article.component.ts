@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ArticleInterface } from "../shared/models/article.interface";
 import { BlogStorageService } from "../blog-storage.service";
 import { filter, map, tap } from "rxjs/operators";
@@ -14,7 +14,9 @@ export class ArticleComponent implements OnInit {
     tags: string[] = [];
     readonly maxArticleDescriptionLength = 700;
 
-    constructor(private route: ActivatedRoute, private blogStorage: BlogStorageService) {
+    constructor(private route: ActivatedRoute,
+                private router: Router,
+                private blogStorage: BlogStorageService) {
     }
 
     ngOnInit() {
@@ -27,6 +29,12 @@ export class ArticleComponent implements OnInit {
 
     expandDescription() {
         this.descriptionExpanded = true;
+    }
+
+    removeArticle() {
+        this.blogStorage.removeArticle(this.article.id);
+        alert("Article removed");
+        this.router.navigateByUrl('/');
     }
 
     private loadArticle(id: number) {

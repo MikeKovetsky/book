@@ -5,7 +5,7 @@
             <mat-icon class="icon--square">add</mat-icon>
         </a>
     </div>
-    <book-article-preview [article]="currentArticle"></book-article-preview>
+    <book-article-preview [article]="currentArticle" (deleted)="fetchArticles()"></book-article-preview>
     <footer class="articles__footer">
         <div class="articles__nav">
             <mat-icon class="icon--round"
@@ -28,6 +28,6 @@
 <ng-template #noArticles>
     <div class="container">
         No articles for now.
-        <a [routerLink]="['blog', 'new-article']">Create one.</a>
+        <a [routerLink]="['/blog', 'edit-article']">Create one.</a>
     </div>
 </ng-template>

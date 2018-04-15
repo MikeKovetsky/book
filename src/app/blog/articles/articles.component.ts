@@ -17,6 +17,10 @@ export class ArticlesComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.fetchArticles();
+    }
+
+    fetchArticles() {
         this.articles = this.blogStorage.getArticles();
         this.loadArticle(0);
     }

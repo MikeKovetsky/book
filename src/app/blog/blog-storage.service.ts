@@ -37,6 +37,11 @@ export class BlogStorageService {
         return articles.find(a => a.id === id);
     }
 
+    removeArticle(id: number) {
+        const key = this.collectionPrefix + id;
+        this.localStorageService.removeOne(key);
+    }
+
     private getNextId(): number {
         const ids = this.getAllArticlesId();
         if (!ids.length) {

@@ -13,9 +13,19 @@
             <mat-icon class="icon--round">launch</mat-icon>
         </div>
         <div class="article-preview__actions">
-            <a [routerLink]="['/blog', 'edit-article']" [queryParams]="{articleId: article.id}">
-                <mat-icon class="icon--round">edit</mat-icon>
-            </a>
+            <div class="icon__wrapper">
+                <mat-icon class="icon--square">edit</mat-icon>
+                <div class="icon__menu">
+                    <a [routerLink]="['/blog', 'edit-article']"
+                       [queryParams]="{articleId: article.id}"
+                       class="icon__option">
+                        Edit
+                    </a>
+                    <span (click)="removeArticle()" class="icon__option">
+                        Remove
+                    </span>
+                </div>
+            </div>
             <img class="avatar avatar--small" src="assets/images/lannister.jpg">
         </div>
     </footer>

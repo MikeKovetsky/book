@@ -86,6 +86,36 @@ p {
     @extend .icon;
     border-radius: 2px;
   }
+
+  &__wrapper {
+    position: relative;
+    &:hover {
+      .icon__menu {
+        display: block;
+      }
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    background: white;
+    display: none;
+    border: 1px solid black;
+  }
+
+  &__option {
+    left: 0;
+    bottom: 0;
+    display: block;
+    color: black;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 0 1rem;
+    cursor: pointer;
+    &:not(:last-child) {
+      border-bottom: 1px solid black;
+    }
+  }
 }
 
 .avatar--small {
