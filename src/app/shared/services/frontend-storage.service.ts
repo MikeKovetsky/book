@@ -11,26 +11,31 @@ function getMaxOfArray(numArray: number[]) {
 
 @Injectable()
 export class FrontendStorageService<T extends Storable> {
-    collectionPrefix = '';
+    _collectionPrefix = '';
+    private readonly collectionDelimiter = '.';
+
+    set collectionPrefix(prefix: string) {
+        this._collectionPrefix = this.collectionDelimiter + prefix;
+    }
 
     constructor(private localStorageService: LocalStorageService) {
     }
 
     addOne(newInstance: T) {
         newInstance.id = this.getNextId();
-        const key = this.collectionPrefix + newInstance.id;
+        const key = this._collectionPrefix + newInstance.id;
         this.localStorageService.setOne(key, JSON.stringify(newInstance));
     }
 
     updateOne(id: number, instance: T) {
-        const key = this.collectionPrefix + id;
+        const key = this._collectionPrefix + id;
         this.localStorageService.setOne(key, JSON.stringify(instance));
     }
 
     getAll(): T[] {
         const keys = this.localStorageService.getAllStoragaKeys();
         return keys
-            .filter(k => k.includes(this.collectionPrefix))
+            .filter(k => k.includes(this._collectionPrefix))
             .map(k => this.localStorageService.getOne(k))
             .map(a => JSON.parse(a));
     }
@@ -41,7 +46,7 @@ export class FrontendStorageService<T extends Storable> {
     }
 
     removeOne(id: number) {
-        const key = this.collectionPrefix + id;
+        const key = this._collectionPrefix + id;
         this.localStorageService.removeOne(key);
     }
 
@@ -56,8 +61,8 @@ export class FrontendStorageService<T extends Storable> {
 
     private getAllInstancesKeysId(): number[] {
         const keys = this.localStorageService.getAllStoragaKeys();
-        const instancesKeys = keys.filter(k => k.includes(this.collectionPrefix));
-        const ids = instancesKeys.map(k => k.replace(this.collectionPrefix, ''));
+        const instancesKeys = keys.filter(k => k.includes(this._collectionPrefix));
+        const ids = instancesKeys.map(k => k.replace(this._collectionPrefix, ''));
         return ids.map(id => parseInt(id)).sort();
     }
 

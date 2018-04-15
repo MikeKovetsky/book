@@ -11,7 +11,7 @@ export class DraftService {
     readonly draftSaveDebounceTimeMs = 2000;
 
     constructor(private storageService: FrontendStorageService<Draft>) {
-        storageService.collectionPrefix = 'drafts.';
+        storageService.collectionPrefix = 'drafts';
     }
 
     addDraft(article: Draft) {

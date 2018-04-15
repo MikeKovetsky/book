@@ -6,7 +6,7 @@ import { FrontendStorageService } from "../../../shared/services/frontend-storag
 export class BlogService {
 
     constructor(private storageService: FrontendStorageService<Article>) {
-        storageService.collectionPrefix = 'articles.';
+        storageService.collectionPrefix = 'articles';
     }
 
     addArticle(article: Article) {
