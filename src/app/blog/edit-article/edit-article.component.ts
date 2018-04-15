@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleInterface } from "../shared/models/article.interface";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BlogStorageService } from "../blog-storage.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { filter, map } from "rxjs/operators";
 
 @Component({
@@ -18,6 +18,7 @@ export class EditArticleComponent implements OnInit {
     backgroundColor: string;
 
     constructor(private route: ActivatedRoute,
+                private router: Router,
                 private fb: FormBuilder,
                 private blogStorage: BlogStorageService) {
         this.form = fb.group({
@@ -38,8 +39,13 @@ export class EditArticleComponent implements OnInit {
             filter(p => p['articleId'] !== void 0),
             map(p => parseInt(p['articleId'])),
             map(id => this.blogStorage.getArticle(id)),
-            filter(article => !!article),
-        ).subscribe(article => this.updateForm(article));
+        ).subscribe(article => {
+            if (article) {
+                this.updateForm(article)
+            } else {
+                this.router.navigate(['/blog', 'edit-article']);
+            }
+        });
     }
 
     saveArticle() {

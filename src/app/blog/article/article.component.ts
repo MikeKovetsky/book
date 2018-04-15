@@ -12,7 +12,7 @@ export class ArticleComponent implements OnInit {
     article: ArticleInterface;
     descriptionExpanded = false;
     tags: string[] = [];
-    readonly maxArtcileDescriptionLength = 700;
+    readonly maxArticleDescriptionLength = 700;
 
     constructor(private route: ActivatedRoute, private blogStorage: BlogStorageService) {
     }

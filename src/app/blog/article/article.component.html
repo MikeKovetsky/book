@@ -20,11 +20,11 @@
                 <div class="article__author"> by Jaime Lannister</div>
                 <div class="article__date">{{article.month}} {{article.year}}</div>
                 <p class="article__description">
-                    {{article.description | truncate: maxArtcileDescriptionLength: descriptionExpanded}}
+                    {{article.description | truncate: maxArticleDescriptionLength: descriptionExpanded}}
                 </p>
                 <button class="button"
                         (click)="expandDescription()"
-                        *ngIf="!descriptionExpanded && article?.description?.length > maxArtcileDescriptionLength">
+                        *ngIf="!descriptionExpanded && article?.description?.length > maxArticleDescriptionLength">
                     Full Texts
                 </button>
             </div>
