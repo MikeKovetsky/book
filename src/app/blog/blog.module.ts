@@ -10,13 +10,15 @@ import { BlogStorageService } from "./blog-storage.service";
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { ColorPickerComponent } from "../shared/components/color-picker/color-picker.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { EditorModule } from "@tinymce/tinymce-angular";
 
 @NgModule({
     imports: [
         CommonModule,
         MyMaterialModule,
         RouterModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        EditorModule
     ],
     declarations: [ArticleComponent, ArticlePreviewComponent, ArticlesComponent, TruncatePipe, EditArticleComponent, ColorPickerComponent],
     providers: [BlogStorageService]

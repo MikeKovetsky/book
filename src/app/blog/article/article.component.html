@@ -30,7 +30,7 @@
                 <div class="article__author"> by Jaime Lannister</div>
                 <div class="article__date">{{article.month}} {{article.year}}</div>
                 <p class="article__description">
-                    {{article.description | truncate: maxArticleDescriptionLength: descriptionExpanded}}
+                    {{article.abstract | truncate: maxArticleDescriptionLength: descriptionExpanded}}
                 </p>
                 <button class="button"
                         (click)="expandDescription()"
@@ -44,9 +44,7 @@
                 <div></div>
                 <mat-icon class="icon--round">launch</mat-icon>
             </header>
-            <div class="article__content">
-                asdasdasd
-            </div>
+            <div class="article__content" [innerHtml]="article?.description"></div>
         </section>
 
     </div>

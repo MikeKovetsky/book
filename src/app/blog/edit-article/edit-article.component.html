@@ -83,9 +83,10 @@
                 <div></div>
                 <mat-icon class="icon--round">launch</mat-icon>
             </header>
-            <div class="article__content">
-                asdasdasd
-            </div>
+            <editor apiKey="2ihq8yvel0tjcpc6dnkh3w9es6g52x5vpt50pfotl97we39n"
+                    [formControl]="form.get('description')"
+                    [init]="{plugins: 'link, image'}">
+            </editor>
         </section>
 
     </div>

@@ -17,13 +17,13 @@
   &__left {
     width: 50%;
     background: $pink;
-    padding: 16px;
+    padding: 1rem;
     color: white;
     padding-bottom: 60px;
   }
 
   &__right {
-    padding: 16px;
+    padding: 1rem;
     width: 50%;
   }
 
@@ -62,7 +62,10 @@
   }
 
   &__content {
-    padding: 20px 60px;
+
+    img {
+      max-width: 100%;
+    }
   }
 
   &__edit-form {

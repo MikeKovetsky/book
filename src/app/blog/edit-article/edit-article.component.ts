@@ -16,6 +16,7 @@ export class EditArticleComponent implements OnInit {
     form: FormGroup;
     articleId: number;
     backgroundColor: string;
+    text = 'asdas';
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -29,6 +30,7 @@ export class EditArticleComponent implements OnInit {
             school: [''],
             course: [''],
             url: [''],
+            description: [''],
             abstract: [''],
             color: ['']
         });
