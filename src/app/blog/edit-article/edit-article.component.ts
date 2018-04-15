@@ -3,8 +3,9 @@ import { Article } from "../shared/models/article.interface";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { BlogService } from "../shared/services/blog.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { debounce, debounceTime, distinctUntilChanged, filter, map, take } from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, filter, map, tap } from "rxjs/operators";
 import { DraftService } from "../shared/services/draft.service";
+import { Draft } from "../shared/models/draf.interface";
 
 @Component({
     selector: 'book-edit-article',
@@ -13,7 +14,7 @@ import { DraftService } from "../shared/services/draft.service";
 })
 export class EditArticleComponent implements OnInit {
     readonly abstractMaxLength = 1000;
-    article: Article;
+    draft: Draft;
     form: FormGroup;
     articleId: number;
     backgroundColor: string;
@@ -42,11 +43,13 @@ export class EditArticleComponent implements OnInit {
         this.route.queryParams.pipe(
             filter(p => p['articleId'] !== void 0),
             map(p => parseInt(p['articleId'])),
-            map(id => this.blogStorage.getArticle(id)),
-        ).subscribe(article => {
-            if (article) {
-                this.article = article;
-                this.updateForm(article)
+            tap(id => this.articleId = id),
+            map(id => this.draftService.getDraftByArticleId(id)),
+            map(draft => draft || this.blogStorage.getArticle(this.articleId))
+        ).subscribe(draft => {
+            if (draft) {
+                this.saveDraft(draft);
+                this.updateForm(draft)
             } else {
                 this.router.navigate(['/blog', 'edit-article']);
             }
@@ -55,12 +58,10 @@ export class EditArticleComponent implements OnInit {
         this.form.valueChanges.pipe(
             debounceTime(this.draftService.draftSaveDebounceTimeMs),
             distinctUntilChanged()
-        ).subscribe(form => {
-
-        });
+        ).subscribe(form => this.saveDraft(form.value));
     }
 
-    saveArticle() {
+    publishArticle() {
         this.markFormGroupTouched(this.form);
         if (this.form.invalid) {
             alert('Some of the fields are invalid!');
@@ -79,6 +80,14 @@ export class EditArticleComponent implements OnInit {
     setColor(color: string) {
         this.backgroundColor = color;
         this.form.get('color').setValue(color);
+    }
+
+    private saveDraft(article: Article) {
+        this.draft = Object.assign(article, {
+            saveDate: new Date(),
+            articleId: article.id
+        });
+        this.draftService.addDraft(this.draft);
     }
 
     // https://github.com/angular/angular/issues/11774

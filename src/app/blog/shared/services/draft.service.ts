@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Article } from "../models/article.interface";
+import { Draft } from "../models/draf.interface";
 import { FrontendStorageService } from "../../../shared/services/frontend-storage.service";
-
-interface Draft extends Article {
-    saveDate: Date;
-}
 
 @Injectable()
 export class DraftService {
@@ -19,17 +15,22 @@ export class DraftService {
         this.storageService.addOne(article);
     }
 
-    updateDraft(articleId: number, article: Draft) {
+    updateDraft(id: number, article: Draft) {
         article.saveDate = new Date();
-        this.storageService.updateOne(articleId, article);
+        this.storageService.updateOne(id, article);
     }
 
-    getAllDraft(): Draft[] {
+    getAllDrafts(): Draft[] {
         return this.storageService.getAll();
     }
 
     getDraft(id: number): Draft {
         return this.storageService.getOne(id);
+    }
+
+    getDraftByArticleId(articleId: number): Draft {
+        const drafts = this.getAllDrafts();
+        return drafts.find(d => d.articleId === articleId);
     }
 
     removeDraft(id: number) {

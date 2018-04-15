@@ -15,7 +15,7 @@ export class FrontendStorageService<T extends Storable> {
     private readonly collectionDelimiter = '.';
 
     set collectionPrefix(prefix: string) {
-        this._collectionPrefix = this.collectionDelimiter + prefix;
+        this._collectionPrefix = prefix + this.collectionDelimiter;
     }
 
     constructor(private localStorageService: LocalStorageService) {
