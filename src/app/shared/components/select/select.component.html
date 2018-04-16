@@ -1,0 +1,12 @@
+<div class="select">
+    <div class="select__option select__option--chosen">
+        <img class="select__img" *ngIf="chosen.imageSrc" [src]="chosen.imageSrc" alt=""/>
+        {{chosen.text}}
+    </div>
+    <div class="select__options">
+        <div class="select__option" *ngFor="let option of options" (click)="chooseOption(option)">
+            <img class="select__img" *ngIf="option.imageSrc" [src]="option.imageSrc" alt=""/>
+            {{option.text}}
+        </div>
+    </div>
+</div>

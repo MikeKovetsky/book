@@ -3,7 +3,7 @@
         <section class="article__left" [style.background-color]="backgroundColor">
             <header class="article__header">
                 <a [routerLink]="['/blog', 'articles']">
-                    <mat-icon class="icon--round" >keyboard_backspace</mat-icon>
+                    <mat-icon class="icon--round">keyboard_backspace</mat-icon>
                 </a>
                 <h1 class="article__header-title">Edit Media Details</h1>
                 <div class="article__header-controls">
@@ -35,8 +35,16 @@
                 <div class="form-field form-field--with-arrow form-field--half">
                     <div class="form-field__label">Month</div>
                     <select class="form-field__select" formControlName="month">
-                        <option value="December">December</option>
-                        <option value="December">November</option>
+                        <option value="December">
+                            <img src="http://blog.rangle.io/content/images/2016/03/control_model_diagram-1.jpg" alt=""
+                                 width="1554" height="774">
+                            December
+                        </option>
+                        <option value="December">
+                            <img src="http://blog.rangle.io/content/images/2016/03/control_model_diagram-1.jpg" alt=""
+                                 width="1554" height="774">
+                            November
+                        </option>
                     </select>
                 </div>
                 <div class="form-field form-field--with-arrow form-field--half">
@@ -48,10 +56,11 @@
                 </div>
                 <div class="form-field form-field--with-arrow form-field--half">
                     <div class="form-field__label">School</div>
-                    <select class="form-field__select" formControlName="school">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
+                    <book-select
+                            [initialValue]="form.get('school').value"
+                            (picked)="form.get('school').setValue($event)"
+                            [options]="SCHOOLS">
+                    </book-select>
                 </div>
                 <div class="form-field form-field--with-arrow form-field--half">
                     <div class="form-field__label">Course</div>

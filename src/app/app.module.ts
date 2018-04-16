@@ -12,7 +12,7 @@ import { FrontendStorageService } from "./shared/services/frontend-storage.servi
 
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
     imports: [
         BrowserModule,

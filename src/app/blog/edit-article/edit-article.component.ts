@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { debounceTime, distinctUntilChanged, map, skip } from "rxjs/operators";
 import { DraftService } from "../shared/services/draft.service";
 import { Draft } from "../shared/models/draft.interface";
+import { SCHOOLS } from "./schools";
 
 @Component({
     selector: 'book-edit-article',
@@ -13,6 +14,7 @@ import { Draft } from "../shared/models/draft.interface";
     styleUrls: ['./edit-article.component.scss']
 })
 export class EditArticleComponent implements OnInit {
+    readonly SCHOOLS = SCHOOLS;
     readonly abstractMaxLength = 1000;
     draft: Draft;
     form: FormGroup;

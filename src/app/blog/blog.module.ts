@@ -14,6 +14,7 @@ import { EditorModule } from "@tinymce/tinymce-angular";
 import { TagsPickerComponent } from "../shared/components/tags-picker/tags-picker.component";
 import { DraftService } from "./shared/services/draft.service";
 import { DraftDateComponent } from './edit-article/draft-date/draft-date.component';
+import { SelectComponent } from "../shared/components/select/select.component";
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import { DraftDateComponent } from './edit-article/draft-date/draft-date.compone
         TruncatePipe,
         EditArticleComponent,
         ColorPickerComponent,
+        SelectComponent,
         TagsPickerComponent,
         DraftDateComponent,
     ],
