@@ -3,9 +3,9 @@ import { Article } from "../shared/models/article.interface";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { BlogService } from "../shared/services/blog.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { debounceTime, distinctUntilChanged, filter, map, tap } from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, map, skip } from "rxjs/operators";
 import { DraftService } from "../shared/services/draft.service";
-import { Draft } from "../shared/models/draf.interface";
+import { Draft } from "../shared/models/draft.interface";
 
 @Component({
     selector: 'book-edit-article',
@@ -39,26 +39,44 @@ export class EditArticleComponent implements OnInit {
         });
     }
 
+    initDraft() {
+        const latestDraft = this.draftService.getDraftWithoutArticle();
+        if (!latestDraft) {
+            this.draftService.addDraft(this.form.value);
+            this.draft = this.form.value;
+        } else {
+            this.draft = latestDraft;
+        }
+        this.updateForm(this.draft);
+    }
+
     ngOnInit() {
         this.route.queryParams.pipe(
-            filter(p => p['articleId'] !== void 0),
-            map(p => parseInt(p['articleId'])),
-            tap(id => this.articleId = id),
-            map(id => this.draftService.getDraftByArticleId(id)),
-            map(draft => draft || this.blogStorage.getArticle(this.articleId))
-        ).subscribe(draft => {
-            if (draft) {
-                this.saveDraft(draft);
-                this.updateForm(draft)
+            map(p => p['articleId']),
+        ).subscribe(articleId => {
+            if (articleId !== undefined) {
+                const article = this.blogStorage.getArticle(parseInt(articleId));
+                if (article) {
+                    this.articleId = articleId;
+                    this.draft = this.draftService.getDraftByArticleId(article.id);
+                    if (this.draft) {
+                        this.updateForm(this.draft);
+                    } else {
+                        this.initDraft();
+                    }
+                } else {
+                    this.router.navigate(['/blog', 'edit-article']);
+                }
             } else {
-                this.router.navigate(['/blog', 'edit-article']);
+                this.initDraft();
             }
         });
 
         this.form.valueChanges.pipe(
+            skip(1),
             debounceTime(this.draftService.draftSaveDebounceTimeMs),
             distinctUntilChanged()
-        ).subscribe(form => this.saveDraft(form.value));
+        ).subscribe(value => this.saveDraft(value));
     }
 
     publishArticle() {
@@ -73,6 +91,7 @@ export class EditArticleComponent implements OnInit {
             alert('Article was edited!');
         } else {
             this.blogStorage.addArticle(this.form.value);
+            this.draftService.removeDraft(this.draft.id);
             alert('Article was added!');
         }
     }
@@ -83,11 +102,11 @@ export class EditArticleComponent implements OnInit {
     }
 
     private saveDraft(article: Article) {
-        this.draft = Object.assign(article, {
-            saveDate: new Date(),
-            articleId: article.id
+        const articleId = article.id ? article.id : null;
+        this.draft = Object.assign(this.draft, article, {
+            saveDate: new Date(), articleId
         });
-        this.draftService.addDraft(this.draft);
+        this.draftService.updateDraft(this.draft.id, this.draft);
     }
 
     // https://github.com/angular/angular/issues/11774

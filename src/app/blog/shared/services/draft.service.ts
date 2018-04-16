@@ -1,23 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Draft } from "../models/draf.interface";
+import { Draft } from "../models/draft.interface";
 import { FrontendStorageService } from "../../../shared/services/frontend-storage.service";
+import { LocalStorageService } from "../../../shared/services/local-storage.service";
 
 @Injectable()
 export class DraftService {
-    readonly draftSaveDebounceTimeMs = 2000;
+    readonly draftSaveDebounceTimeMs = 1000;
+    storageService: FrontendStorageService<Draft>;
 
-    constructor(private storageService: FrontendStorageService<Draft>) {
-        storageService.collectionPrefix = 'drafts';
+    constructor(private localStorageService: LocalStorageService) {
+        this.storageService = new FrontendStorageService<Draft>(localStorageService);
+        this.storageService.collectionPrefix = 'drafts';
     }
 
-    addDraft(article: Draft) {
-        article.saveDate = new Date();
-        this.storageService.addOne(article);
+    addDraft(draft: Draft) {
+        draft.saveDate = new Date();
+        this.storageService.addOne(draft);
     }
 
-    updateDraft(id: number, article: Draft) {
-        article.saveDate = new Date();
-        this.storageService.updateOne(id, article);
+    updateDraft(id: number, draft: Draft) {
+        draft.saveDate = new Date();
+        this.storageService.updateOne(id, draft);
     }
 
     getAllDrafts(): Draft[] {
@@ -31,6 +34,17 @@ export class DraftService {
     getDraftByArticleId(articleId: number): Draft {
         const drafts = this.getAllDrafts();
         return drafts.find(d => d.articleId === articleId);
+    }
+
+    clearDraftWithoutArticle() {
+        const drafts = this.getAllDrafts();
+        const draft = drafts.find(d => d.articleId === null);
+        this.removeDraft(draft.id);
+    }
+
+    getDraftWithoutArticle() {
+        const drafts = this.getAllDrafts();
+        return drafts.find(d => d.articleId === null);
     }
 
     removeDraft(id: number) {

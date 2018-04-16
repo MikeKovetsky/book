@@ -21,7 +21,7 @@
                            placeholder="This is title">
                 </div>
                 <div class="form-field form-field--full">
-                    <book-tags-picker [initialTags]="article?.tags"
+                    <book-tags-picker [initialTags]="draft?.tags"
                                       (picked)="form.get('tags').setValue($event)">
                     </book-tags-picker>
                 </div>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-field form-field--full">
                     <div class="form-field__label">Choose a cover color</div>
-                    <book-color-picker [initialColor]="article?.color"
+                    <book-color-picker [initialColor]="draft?.color"
                                        (picked)="setColor($event)">
                     </book-color-picker>
                 </div>
