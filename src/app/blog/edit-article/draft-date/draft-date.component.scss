@@ -1,0 +1,41 @@
+:host {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: #5aa299;
+  font-size: 12px;
+  top: 65px;
+  right: 0;
+  z-index: 1;
+}
+
+.draft-date {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  padding: 0 15px;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    color: white;
+    border: 0;
+    background: transparent;
+    font-size: 20px;
+  }
+
+  &:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    position: absolute;
+    border-bottom: 5px solid #5aa299;
+    right: 74px;
+    top: -5px;
+  }
+}

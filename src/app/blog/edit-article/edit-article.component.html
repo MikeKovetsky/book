@@ -12,6 +12,7 @@
                         <mat-icon class="icon--square">file_upload</mat-icon>
                     </a>
                 </div>
+                <book-draft-date [date]="draft?.saveDate" *ngIf="draft"></book-draft-date>
             </header>
             <form class="article__edit-form" [formGroup]="form">
                 <div class="form-field form-field--full">

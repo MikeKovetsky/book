@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { TagsPickerComponent } from "../shared/components/tags-picker/tags-picker.component";
 import { DraftService } from "./shared/services/draft.service";
+import { DraftDateComponent } from './edit-article/draft-date/draft-date.component';
 
 @NgModule({
     imports: [
@@ -29,7 +30,8 @@ import { DraftService } from "./shared/services/draft.service";
         TruncatePipe,
         EditArticleComponent,
         ColorPickerComponent,
-        TagsPickerComponent
+        TagsPickerComponent,
+        DraftDateComponent,
     ],
     providers: [BlogService, DraftService]
 })

@@ -1,0 +1,9 @@
+<section class="draft-date" *ngIf="isShown">
+    <div class="draft-date__inner">
+        <mat-icon class="icon--square draft-date__icon">drafts</mat-icon>
+        <span>Draft saved at {{date | date:'medium'}}</span>
+    </div>
+    <mat-icon class="icon--square icon--sm" (click)="isShown = false">
+        close
+    </mat-icon>
+</section>
