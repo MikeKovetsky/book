@@ -29,12 +29,12 @@
                 </div>
                 <div class="article__author"> by {{article.author}}</div>
                 <div class="article__date">{{article.month}} {{article.year}}</div>
-                <p class="article__description">
+                <p class="article__abstract">
                     {{article.abstract | truncate: maxArticleDescriptionLength: descriptionExpanded}}
                 </p>
                 <button class="button"
                         (click)="expandDescription()"
-                        *ngIf="!descriptionExpanded && article?.description?.length > maxArticleDescriptionLength">
+                        *ngIf="!descriptionExpanded && article?.abstract?.length > maxArticleDescriptionLength">
                     Full Texts
                 </button>
             </div>
@@ -44,7 +44,7 @@
                 <div></div>
                 <mat-icon class="icon--round">launch</mat-icon>
             </header>
-            <div class="article__content" [innerHtml]="article?.description"></div>
+            <div class="article__content" [innerHtml]="description"></div>
         </section>
 
     </div>

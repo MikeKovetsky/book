@@ -2,26 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Article } from "../shared/models/article.interface";
 import { BlogService } from "../shared/services/blog.service";
-import { filter, map, tap } from "rxjs/operators";
+import { filter, map } from "rxjs/operators";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 @Component({
     selector: 'book-article',
     templateUrl: './article.component.html'
 })
 export class ArticleComponent implements OnInit {
+    readonly maxArticleDescriptionLength = 700;
     article: Article;
     descriptionExpanded = false;
     tags: string[] = [];
-    readonly maxArticleDescriptionLength = 700;
+    description: SafeHtml;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
+                private domSanitizer: DomSanitizer,
                 private blogStorage: BlogService) {
     }
 
     ngOnInit() {
         this.route.params.pipe(
-            tap(a => console.log(a)),
             filter(params => params['articleId'] !== void 0),
             map((q) => parseInt(q['articleId'])),
         ).subscribe(id => this.loadArticle(id));
@@ -41,6 +43,7 @@ export class ArticleComponent implements OnInit {
         this.article = this.blogStorage.getArticle(id);
         if (this.article) {
             this.tags = this.prepareTags(this.article.tags);
+            this.description = this.prepareDescription(this.article.description);
         }
     }
 
@@ -49,6 +52,10 @@ export class ArticleComponent implements OnInit {
             return [];
         }
         return tags.split(',');
+    }
+
+    private prepareDescription(description: string) {
+        return this.domSanitizer.bypassSecurityTrustHtml(description);
     }
 
 }

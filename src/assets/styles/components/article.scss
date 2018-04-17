@@ -43,7 +43,7 @@
     margin-bottom: 60px;
   }
 
-  &__description {
+  &__abstract {
     margin: auto;
     width: 100%;
     margin-bottom: 20px;
@@ -66,6 +66,7 @@
   }
 
   &__content {
+    word-wrap: break-word;
 
     img {
       max-width: 100%;
