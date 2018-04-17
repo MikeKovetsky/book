@@ -21,10 +21,11 @@ export class FrontendStorageService<T extends Storable> {
     constructor(private localStorageService: LocalStorageService) {
     }
 
-    addOne(newInstance: T) {
+    addOne(newInstance: T): T {
         newInstance.id = this.getNextId();
         const key = this._collectionPrefix + newInstance.id;
         this.localStorageService.setOne(key, JSON.stringify(newInstance));
+        return newInstance;
     }
 
     updateOne(id: number, instance: T) {

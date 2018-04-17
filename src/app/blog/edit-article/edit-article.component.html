@@ -57,7 +57,7 @@
                 <div class="form-field form-field--with-arrow form-field--half">
                     <div class="form-field__label">School</div>
                     <book-select
-                            [initialValue]="form.get('school').value"
+                            [initialValue]="draft?.school"
                             (picked)="form.get('school').setValue($event)"
                             [options]="SCHOOLS">
                     </book-select>

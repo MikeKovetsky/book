@@ -43,11 +43,10 @@ export class EditArticleComponent implements OnInit {
 
     initDraft() {
         const latestDraft = this.draftService.getDraftWithoutArticle();
-        if (!latestDraft) {
-            this.draftService.addDraft(this.form.value);
-            this.draft = this.form.value;
-        } else {
+        if (latestDraft) {
             this.draft = latestDraft;
+        } else {
+            this.buildDraft(this.form.value);
         }
         this.updateForm(this.draft);
     }
@@ -64,7 +63,7 @@ export class EditArticleComponent implements OnInit {
                     if (this.draft) {
                         this.updateForm(this.draft);
                     } else {
-                        this.initDraft();
+                        this.buildDraft(article);
                     }
                 } else {
                     this.router.navigate(['/blog', 'edit-article']);
@@ -109,6 +108,11 @@ export class EditArticleComponent implements OnInit {
             saveDate: new Date(), articleId
         });
         this.draftService.updateDraft(this.draft.id, this.draft);
+    }
+
+    buildDraft(article: Article) {
+        this.draft = this.draftService.addDraft(article);
+        this.updateForm(this.draft);
     }
 
     // https://github.com/angular/angular/issues/11774

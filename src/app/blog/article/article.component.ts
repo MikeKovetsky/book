@@ -24,8 +24,12 @@ export class ArticleComponent implements OnInit {
 
     ngOnInit() {
         this.route.params.pipe(
-            filter(params => params['articleId'] !== void 0),
-            map((q) => parseInt(q['articleId'])),
+            filter(params => {
+                return params['articleId'] !== void 0
+            }),
+            map((q) => {
+                return parseInt(q['articleId'])
+            }),
         ).subscribe(id => this.loadArticle(id));
     }
 

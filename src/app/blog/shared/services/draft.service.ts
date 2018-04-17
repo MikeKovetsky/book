@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Draft } from "../models/draft.interface";
 import { FrontendStorageService } from "../../../shared/services/frontend-storage.service";
 import { LocalStorageService } from "../../../shared/services/local-storage.service";
+import { Article } from "../models/article.interface";
 
 @Injectable()
 export class DraftService {
@@ -13,9 +14,10 @@ export class DraftService {
         this.storageService.collectionPrefix = 'drafts';
     }
 
-    addDraft(draft: Draft) {
+    addDraft(article: Article) {
+        const draft = article as Draft;
         draft.saveDate = new Date();
-        this.storageService.addOne(draft);
+        return this.storageService.addOne(draft);
     }
 
     updateDraft(id: number, draft: Draft) {
