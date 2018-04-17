@@ -87,7 +87,7 @@ export class EditArticleComponent implements OnInit {
             return;
         }
         if (this.articleId) {
-            const article: Article = Object.assign(this.form.value, {id: this.articleId});
+            const article: Article = Object.assign(this.form.value, {id: +this.articleId});
             this.blogStorage.updateArticle(this.articleId, article);
             alert('Article was edited!');
         } else {
@@ -102,16 +102,23 @@ export class EditArticleComponent implements OnInit {
         this.form.get('color').setValue(color);
     }
 
-    private saveDraft(article: Article) {
-        const articleId = article.id ? article.id : null;
+    private saveDraft(article: Article, updateForm = false) {
         this.draft = Object.assign(this.draft, article, {
-            saveDate: new Date(), articleId
+            saveDate: new Date(),
+            articleId: +this.articleId
         });
         this.draftService.updateDraft(this.draft.id, this.draft);
+        if (updateForm) {
+            this.updateForm(this.draft);
+        }
     }
 
     buildDraft(article: Article) {
-        this.draft = this.draftService.addDraft(article);
+        this.draft = Object.assign(article, {
+            saveDate: new Date(),
+            articleId: +this.articleId
+        });
+        this.draft = this.draftService.addDraft(this.draft);
         this.updateForm(this.draft);
     }
 
@@ -132,7 +139,6 @@ export class EditArticleComponent implements OnInit {
     }
 
     private updateForm(article: Article) {
-        this.articleId = article.id;
         for (const field in article) {
             if (this.form.get(field) !== null) {
                 this.form.get(field).setValue(article[field]);
