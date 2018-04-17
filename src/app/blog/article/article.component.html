@@ -2,8 +2,8 @@
     <div class="article" *ngIf="article; else articleNotFound">
         <section class="article__left" [style.background-color]="article.color">
             <header class="article__header">
-                <a [routerLink]="['/blog', 'edit-article']">
-                    <mat-icon class="icon--square">add</mat-icon>
+                <a [routerLink]="['/blog', 'articles']">
+                    <mat-icon class="icon--round">keyboard_backspace</mat-icon>
                 </a>
                 <div class="article__header-controls">
                     <div class="icon__wrapper">
