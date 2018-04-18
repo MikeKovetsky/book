@@ -10,8 +10,8 @@ export class BlogService {
         storageService.collectionPrefix = 'articles';
     }
 
-    addArticle(article: Article) {
-        this.storageService.addOne(article);
+    addArticle(article: Article): Article {
+        return this.storageService.addOne(article);
     }
 
     updateArticle(articleId: number, article: Article) {

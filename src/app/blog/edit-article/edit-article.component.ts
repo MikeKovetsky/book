@@ -91,9 +91,11 @@ export class EditArticleComponent implements OnInit {
             this.blogStorage.updateArticle(this.articleId, article);
             alert('Article was edited!');
         } else {
-            this.blogStorage.addArticle(this.form.value);
+            const newArticle = this.blogStorage.addArticle(this.form.value);
             this.draftService.removeDraft(this.draft.id);
+            this.form.reset();
             alert('Article was added!');
+            this.router.navigate(['/blog', 'article', newArticle.id]);
         }
     }
 
