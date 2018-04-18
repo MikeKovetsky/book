@@ -21,6 +21,10 @@
     color: white;
     padding-bottom: 60px;
     position: relative;
+
+    &--full {
+      width: 100%;
+    }
   }
 
   &__right {
